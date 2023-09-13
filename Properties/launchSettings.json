@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DistortImage": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
