@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBoxShow = new PictureBox();
             vScrollBar1 = new VScrollBar();
             vScrollBar2 = new VScrollBar();
             vScrollBar0 = new VScrollBar();
@@ -46,18 +45,12 @@
             textBox_c4 = new TextBox();
             label6 = new Label();
             buttonSet = new Button();
+            buttonSave = new Button();
+            pictureBoxShow = new PictureBox();
+            pictureBoxCopy = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxShow).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCopy).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBoxShow
-            // 
-            pictureBoxShow.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pictureBoxShow.Location = new Point(12, 12);
-            pictureBoxShow.Name = "pictureBoxShow";
-            pictureBoxShow.Size = new Size(592, 426);
-            pictureBoxShow.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxShow.TabIndex = 0;
-            pictureBoxShow.TabStop = false;
             // 
             // vScrollBar1
             // 
@@ -66,7 +59,7 @@
             vScrollBar1.Maximum = 1000;
             vScrollBar1.Minimum = -1000;
             vScrollBar1.Name = "vScrollBar1";
-            vScrollBar1.Size = new Size(41, 426);
+            vScrollBar1.Size = new Size(41, 747);
             vScrollBar1.TabIndex = 1;
             vScrollBar1.Tag = "0";
             vScrollBar1.ValueChanged += vScrollBars_ValueChanged;
@@ -78,7 +71,7 @@
             vScrollBar2.Maximum = 1000;
             vScrollBar2.Minimum = -1000;
             vScrollBar2.Name = "vScrollBar2";
-            vScrollBar2.Size = new Size(41, 426);
+            vScrollBar2.Size = new Size(41, 747);
             vScrollBar2.TabIndex = 2;
             vScrollBar2.Tag = "0";
             vScrollBar2.ValueChanged += vScrollBars_ValueChanged;
@@ -90,7 +83,7 @@
             vScrollBar0.Maximum = 1000;
             vScrollBar0.Minimum = -1000;
             vScrollBar0.Name = "vScrollBar0";
-            vScrollBar0.Size = new Size(41, 426);
+            vScrollBar0.Size = new Size(41, 747);
             vScrollBar0.TabIndex = 0;
             vScrollBar0.Tag = "0";
             vScrollBar0.ValueChanged += vScrollBars_ValueChanged;
@@ -102,7 +95,7 @@
             vScrollBar3.Maximum = 1000;
             vScrollBar3.Minimum = -1000;
             vScrollBar3.Name = "vScrollBar3";
-            vScrollBar3.Size = new Size(41, 426);
+            vScrollBar3.Size = new Size(41, 747);
             vScrollBar3.TabIndex = 3;
             vScrollBar3.Tag = "0";
             vScrollBar3.ValueChanged += vScrollBars_ValueChanged;
@@ -114,7 +107,7 @@
             vScrollBar4.Maximum = 1000;
             vScrollBar4.Minimum = -1000;
             vScrollBar4.Name = "vScrollBar4";
-            vScrollBar4.Size = new Size(41, 426);
+            vScrollBar4.Size = new Size(41, 747);
             vScrollBar4.TabIndex = 4;
             vScrollBar4.Tag = "0";
             vScrollBar4.ValueChanged += vScrollBars_ValueChanged;
@@ -228,11 +221,43 @@
             buttonSet.UseVisualStyleBackColor = true;
             buttonSet.Click += buttonSet_Click;
             // 
+            // buttonSave
+            // 
+            buttonSave.Location = new Point(683, 392);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(75, 23);
+            buttonSave.TabIndex = 18;
+            buttonSave.Text = "Save";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // pictureBoxShow
+            // 
+            pictureBoxShow.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBoxShow.Location = new Point(12, 12);
+            pictureBoxShow.Name = "pictureBoxShow";
+            pictureBoxShow.Size = new Size(480, 360);
+            pictureBoxShow.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxShow.TabIndex = 0;
+            pictureBoxShow.TabStop = false;
+            // 
+            // pictureBoxCopy
+            // 
+            pictureBoxCopy.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pictureBoxCopy.Location = new Point(12, 378);
+            pictureBoxCopy.Name = "pictureBoxCopy";
+            pictureBoxCopy.Size = new Size(480, 360);
+            pictureBoxCopy.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxCopy.TabIndex = 19;
+            pictureBoxCopy.TabStop = false;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1121, 450);
+            ClientSize = new Size(1121, 771);
+            Controls.Add(pictureBoxCopy);
+            Controls.Add(buttonSave);
             Controls.Add(buttonSet);
             Controls.Add(label6);
             Controls.Add(textBox_c4);
@@ -255,13 +280,12 @@
             Text = "DistortImage";
             Load += FormMain_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxShow).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCopy).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private PictureBox pictureBoxShow;
         private VScrollBar vScrollBar1;
         private VScrollBar vScrollBar2;
         private VScrollBar vScrollBar0;
@@ -279,5 +303,8 @@
         private TextBox textBox_c4;
         private Label label6;
         private Button buttonSet;
+        private Button buttonSave;
+        private PictureBox pictureBoxShow;
+        private PictureBox pictureBoxCopy;
     }
 }
