@@ -69,7 +69,7 @@ namespace DistortImage
                 this.textBoxes[i].Text = this.consts[i].ToString();
             }
 
-            this.dest_image = this.DoDistortImage(this.bitmap,this.consts);
+            this.dest_image = this.DoDistortImage(this.bitmap, this.consts);
 
             var target = new Bitmap(this.dest_image.Width, dest_image.Height);
             using (var g = Graphics.FromImage(target))
@@ -77,15 +77,15 @@ namespace DistortImage
                 g.DrawImage(this.backgroud, new Point());
                 g.DrawImage(dest_image, new Point());
             }
-            
+
             this.pictureBoxShow.Image = target;
 
             double[] other_consts = new double[this.consts.Length];
-            for (int i = 0;i < other_consts.Length;i++)
+            for (int i = 0; i < other_consts.Length; i++)
             {
                 other_consts[i] = -this.consts[i];
             }
-            this.pictureBoxCopy.Image = this.DoDistortImage(this.dest_image, other_consts);
+            //this.pictureBoxCopy.Image = this.DoDistortImage(this.dest_image, other_consts);
         }
         private Bitmap DoDistortImage(Bitmap source_image, double[] consts)
         {
@@ -100,7 +100,7 @@ namespace DistortImage
                                                  //矫正参数
                 double r;//矫正前像素点跟镜头中心的距离
                 double s;//矫正后像素点跟镜头中心的距离
-                PointD mCorrectPoint;//矫正后点坐标
+                PointD local_center_point;//矫正后点坐标
                 double distance_to_a_x;
                 double distance_to_a_y;//求得中心点和边界的距离
 
@@ -124,24 +124,25 @@ namespace DistortImage
                         if (s == 0) continue;
 
                         s = Math.Abs(s);
-                        mCorrectPoint = new PointD(
+                        local_center_point = new PointD(
                             (x - lenscenter.X) / s + lenscenter.X,
                             (y - lenscenter.Y) / s + lenscenter.Y);
                         //越界判断
-                        if (mCorrectPoint.Y < 0 || mCorrectPoint.Y >= source_image.Height - 1)
+                        if (local_center_point.Y < 0 || local_center_point.Y >= source_image.Height - 1)
                         {
                             continue;
                         }
-                        if (mCorrectPoint.X < 0 || mCorrectPoint.X >= source_image.Width - 1)
+                        if (local_center_point.X < 0 || local_center_point.X >= source_image.Width - 1)
                         {
                             continue;
                         }
-                        src_a = new Point((int)mCorrectPoint.X, (int)mCorrectPoint.Y);
+                        //4个像素取平均值
+                        src_a = new Point((int)local_center_point.X, (int)local_center_point.Y);
                         src_b = new Point(src_a.X + 1, src_a.Y);
                         src_c = new Point(src_a.X, src_a.Y + 1);
                         src_d = new Point(src_a.X + 1, src_a.Y + 1);
-                        distance_to_a_x = mCorrectPoint.X - src_a.X;//在原图像中与a点的水平距离    
-                        distance_to_a_y = mCorrectPoint.Y - src_a.Y;//在原图像中与a点的垂直距离    	
+                        distance_to_a_x = local_center_point.X - src_a.X;//在原图像中与a点的水平距离    
+                        distance_to_a_y = local_center_point.Y - src_a.Y;//在原图像中与a点的垂直距离    	
 
                         double R =
                             source_image.GetPixel(src_a.X, src_a.Y).R * (1 - distance_to_a_x) * (1 - distance_to_a_y) +
